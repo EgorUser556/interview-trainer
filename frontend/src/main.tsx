@@ -2,11 +2,14 @@ import './styles/global.scss';
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
-import App from './components/App';
+import AppRouter from './components/AppRouter';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <App />
+        <BrowserRouter>
+            <AppRouter />
+        </BrowserRouter>
     </StrictMode>,
 );
