@@ -1,7 +1,6 @@
-import CreateInterviewForm from '../CreateInterviewForm';
-
+import HomePage from '../../pages/HomePage';
 const App = () => {
-    return <CreateInterviewForm />;
+    return <HomePage />;
 };
 
 export default App;
