@@ -1,13 +1,6 @@
-import CreateInterviewForm from '../CreateInterviewForm';
-import Header from '../Header';
-
+import HomePage from "../../pages/HomePage";
 const App = () => {
-    return (
-        <>
-            <Header />
-            <CreateInterviewForm />;
-        </>
-    );
+    return <HomePage />
 };
 
 export default App;

@@ -7,9 +7,7 @@ const Header = () => {
             <div className={styles.container}>
                 <div className={styles.brand}>
                     <img className={styles.logo} src={logo} alt="logotype" />
-                    <span className={styles.brandName}>
-                        Interview Trainer
-                    </span>
+                    <span className={styles.brandName}>Interview Trainer</span>
                 </div>
 
                 <nav
