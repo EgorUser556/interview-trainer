@@ -6,8 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-*.env
+.env
 *.png
+/backend/src/generated/prisma/
 
 node_modules
 dist
