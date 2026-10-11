@@ -1,160 +1,160 @@
 @use '../../styles/mixins' as mixins;
 
 .wrapper {
-  width: 100%;
-  min-width: 0;
+    width: 100%;
+    min-width: 0;
 }
 
 .card,
 .result {
-  @include mixins.card;
+    @include mixins.card;
 }
 
 .title {
-  margin: 0;
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-heading);
+    margin: 0;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-heading);
 }
 
 .description {
-  margin: var(--space-2) 0 0;
-  color: var(--color-text-muted);
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-muted);
 }
 
 .form {
-  margin-top: var(--space-6);
+    margin-top: var(--space-6);
 }
 
 .fields {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-4);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
 }
 
 .field {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: var(--space-2);
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--space-2);
 }
 
 .label {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.4;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.4;
 }
 
 .select {
-  width: 100%;
-  min-width: 0;
-  min-height: var(--control-min-height);
-  padding: 10px var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
-  background-color: var(--color-field);
-  color: var(--color-text);
-  cursor: pointer;
-  transition: border-color var(--transition-fast);
+    width: 100%;
+    min-width: 0;
+    min-height: var(--control-min-height);
+    padding: 10px var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    background-color: var(--color-field);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
 
-  @include mixins.focus-ring(var(--color-accent), 2px);
+    @include mixins.focus-ring(var(--color-accent), 2px);
 
-  &:hover {
-    border-color: var(--color-border-hover);
-  }
+    &:hover {
+        border-color: var(--color-border-hover);
+    }
 
-  &:focus-visible {
-    border-color: var(--color-accent);
-  }
+    &:focus-visible {
+        border-color: var(--color-accent);
+    }
 }
 
 .button {
-  width: 100%;
-  min-height: var(--control-min-height);
-  margin-top: var(--space-5);
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid transparent;
-  border-radius: var(--radius-control);
-  background: var(--color-accent);
-  color: var(--color-white);
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.4;
-  cursor: pointer;
-  transition: background-color var(--transition-fast);
+    width: 100%;
+    min-height: var(--control-min-height);
+    margin-top: var(--space-5);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid transparent;
+    border-radius: var(--radius-control);
+    background: var(--color-accent);
+    color: var(--color-white);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
 
-  @include mixins.focus-ring;
+    @include mixins.focus-ring;
 
-  &:hover:not(:disabled) {
-    background: var(--color-accent-hover);
-  }
+    &:hover:not(:disabled) {
+        background: var(--color-accent-hover);
+    }
 
-  &:active:not(:disabled) {
-    background: var(--color-accent-active);
-  }
+    &:active:not(:disabled) {
+        background: var(--color-accent-active);
+    }
 
-  &:disabled {
-    opacity: 0.5;
-  }
+    &:disabled {
+        opacity: 0.5;
+    }
 }
 
 .hint {
-  margin: var(--space-4) 0 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-xs);
-  text-align: center;
+    margin: var(--space-4) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    text-align: center;
 }
 
 .result {
-  margin-top: var(--space-4);
+    margin-top: var(--space-4);
 }
 
 .resultTitle {
-  margin: 0 0 var(--space-4);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.4;
+    margin: 0 0 var(--space-4);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
 }
 
 .summary {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin: 0;
 }
 
 .summaryRow {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-4);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
 
-  dt {
-    color: var(--color-text-muted);
-  }
+    dt {
+        color: var(--color-text-muted);
+    }
 
-  dd {
-    margin: 0;
-    font-weight: var(--font-weight-medium);
-    text-align: right;
-  }
+    dd {
+        margin: 0;
+        font-weight: var(--font-weight-medium);
+        text-align: right;
+    }
 }
 
 @include mixins.mobile {
-  .title {
-    font-size: var(--font-size-lg);
-  }
+    .title {
+        font-size: var(--font-size-lg);
+    }
 
-  .fields {
-    grid-template-columns: minmax(0, 1fr);
-  }
+    .fields {
+        grid-template-columns: minmax(0, 1fr);
+    }
 
-  .hint {
-    text-align: left;
-  }
+    .hint {
+        text-align: left;
+    }
 }
 
 @include mixins.reduced-motion {
-  .select,
-  .button {
-    transition: none;
-  }
+    .select,
+    .button {
+        transition: none;
+    }
 }

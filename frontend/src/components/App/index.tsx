@@ -1,7 +1,13 @@
 import CreateInterviewForm from '../CreateInterviewForm';
+import Header from '../Header';
 
 const App = () => {
-    return <CreateInterviewForm />;
+    return (
+        <>
+            <Header />
+            <CreateInterviewForm />;
+        </>
+    );
 };
 
 export default App;
