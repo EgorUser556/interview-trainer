@@ -1,10 +1,12 @@
+import './styles/global.scss';
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import Index from './components/App';
+import App from './components/App';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <Index />
-  </StrictMode>,
+    <StrictMode>
+        <App />
+    </StrictMode>,
 );

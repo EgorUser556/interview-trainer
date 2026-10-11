@@ -1,5 +1,7 @@
+import CreateInterviewForm from '../CreateInterviewForm';
+
 const App = () => {
-  return <h1>Hello World</h1>;
+    return <CreateInterviewForm />;
 };
 
 export default App;
