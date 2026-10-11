@@ -1,38 +1,45 @@
 @use '../../styles/mixins' as mixins;
 
 .main {
-  padding-block: var(--space-8);
+    padding-block: var(--space-8);
 }
 
 .container {
-  @include mixins.container;
+    @include mixins.container;
 }
 
 .intro {
-  margin-bottom: var(--space-6);
+    margin-bottom: var(--space-6);
 }
 
 .title {
-  margin: 0;
-  color: var(--color-text);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-heading);
+    margin: 0;
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+}
+
+.content {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: var(--space-4);
 }
 
 .description {
-  margin: var(--space-2) 0 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
 }
 
 @include mixins.mobile {
-  .main {
-    padding-block: var(--space-6);
-  }
+    .main {
+        padding-block: var(--space-6);
+    }
 
-  .title {
-    font-size: var(--font-size-xl);
-  }
+    .title {
+        font-size: var(--font-size-xl);
+    }
 }

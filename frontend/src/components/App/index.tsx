@@ -1,6 +1,6 @@
-import HomePage from "../../pages/HomePage";
+import HomePage from '../../pages/HomePage';
 const App = () => {
-    return <HomePage />
+    return <HomePage />;
 };
 
 export default App;

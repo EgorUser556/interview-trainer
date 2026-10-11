@@ -1,0 +1,67 @@
+@use '../../styles/mixins' as mixins;
+
+.wrapper {
+    @include mixins.card;
+}
+
+.title {
+    margin: 0 0 var(--space-5);
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-heading);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+}
+
+.number {
+    display: flex;
+    flex: 0 0 var(--space-9);
+    align-items: center;
+    justify-content: center;
+    width: var(--space-9);
+    height: var(--space-9);
+    border-radius: 50%;
+    background: linear-gradient(
+        135deg,
+        var(--color-accent),
+        var(--color-accent-active)
+    );
+    color: var(--color-white);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+}
+
+.content {
+    flex: 1;
+    min-width: 0;
+}
+
+.stepTitle {
+    margin: 0;
+    color: var(--color-text);
+    font-size: var(--space-4);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-base);
+}
+
+.description {
+    margin: var(--space-1) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-base);
+}
