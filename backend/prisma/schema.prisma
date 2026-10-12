@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider     = "prisma-client"
   output       = "../src/generated/prisma"
@@ -24,13 +19,50 @@ enum Topic {
   React
 }
 
+enum InterviewStatus {
+  InProgress
+  Completed
+}
+
+enum SelfRating {
+  Incorrect
+  Partial
+  Correct
+}
+
 model Question {
-  id          Int      @id @default(autoincrement())
+  id                 Int                 @id @default(autoincrement())
+  topic              Topic
+  level              Level
+  text               String
+  explanation        String
+  isActive           Boolean             @default(true)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  interviewQuestions InterviewQuestion[]
+}
+
+model InterviewSession {
+  id          Int                 @id @default(autoincrement())
   topic       Topic
   level       Level
-  text        String
-  explanation String
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  status      InterviewStatus     @default(InProgress)
+  createdAt   DateTime            @default(now())
+  completedAt DateTime?
+  questions   InterviewQuestion[]
+}
+
+model InterviewQuestion {
+  id         Int         @id @default(autoincrement())
+  sessionId  Int
+  questionId Int
+  position   Int
+  answer     String?
+  selfRating SelfRating?
+
+  session  InterviewSession @relation(fields: [sessionId], references: [id])
+  question Question         @relation(fields: [questionId], references: [id])
+
+  @@unique([sessionId, questionId])
+  @@unique([sessionId, position])
 }
