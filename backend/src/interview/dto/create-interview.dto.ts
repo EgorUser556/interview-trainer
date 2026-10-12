@@ -1,5 +1,5 @@
-import {IsEnum, IsInt, Min} from 'class-validator';
-import { Topic, Level } from "../../generated/prisma/enums";
+import { IsEnum, IsInt, Min } from 'class-validator';
+import { Topic, Level } from '../../generated/prisma/enums';
 
 export class CreateInterviewDto {
     @IsEnum(Topic)
