@@ -6,6 +6,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { QuestionService } from './question/question.service';
 import { QuestionModule } from './question/question.module';
+import { InterviewModule } from './interview/interview.module';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -21,6 +22,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
         }),
         PrismaModule,
         QuestionModule,
+        InterviewModule,
     ],
     controllers: [AppController],
     providers: [AppService, QuestionService],
