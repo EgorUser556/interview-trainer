@@ -1,6 +1,6 @@
 export enum TOPIC {
-    JS = 'JS',
-    TS = 'TS',
+    JS = 'Javascript',
+    TS = 'Typescript',
     React = 'React',
 }
 
