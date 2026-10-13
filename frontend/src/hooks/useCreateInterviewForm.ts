@@ -1,4 +1,6 @@
+import { useMutation } from '@tanstack/react-query';
 import { type ChangeEvent, type SyntheticEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { createInterview } from '../api/interview/create-interview.ts';
 import {
@@ -9,14 +11,25 @@ import {
 import type { InterviewSettings } from '../components/CreateInterviewForm/types';
 
 export const useCreateInterviewForm = () => {
+    const navigate = useNavigate();
+
     const [settings, setSettings] = useState<InterviewSettings>({
         topic: TOPIC.JS,
         level: LEVEL.Junior,
         quantity: QUANTITY.Five,
     });
 
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const createInterviewMutation = useMutation({
+        mutationFn: createInterview,
+
+        onSuccess: (interview) => {
+            navigate(`/interview/${interview.id}`);
+        },
+
+        onError: (error) => {
+            throw new Error(error.message);
+        },
+    });
 
     const handleTopicChange = (event: ChangeEvent<HTMLSelectElement>) => {
         const topic = event.currentTarget.value;
@@ -60,33 +73,17 @@ export const useCreateInterviewForm = () => {
     const handleSubmit = async (event: SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (isSubmitting) {
+        if (createInterviewMutation.isPending) {
             return;
         }
 
-        setIsSubmitting(true);
-        setError(null);
-
-        try {
-            const interview = await createInterview(settings);
-            console.log('Созданное интервью:', interview);
-        } catch (e) {
-            console.error(e);
-
-            setError(
-                e instanceof Error
-                    ? e.message
-                    : 'Не удалось создать интервью. Попробуй ещё раз.',
-            );
-        } finally {
-            setIsSubmitting(false);
-        }
+        createInterviewMutation.mutate(settings);
     };
 
     return {
         settings,
-        isSubmitting,
-        error,
+        isSubmitting: createInterviewMutation.isPending,
+        error: createInterviewMutation.error?.message ?? null,
         handleTopicChange,
         handleLevelChange,
         handleQuantityChange,
