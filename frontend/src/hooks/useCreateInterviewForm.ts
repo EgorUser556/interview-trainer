@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { type ChangeEvent, type SyntheticEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { createInterview } from '../api/interview/create-interview.ts';
+import { createInterview } from '../api/interview/create-interview';
 import {
     LEVEL,
     QUANTITY,

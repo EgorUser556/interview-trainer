@@ -3,9 +3,47 @@ import { Link } from 'react-router-dom';
 import leftArrow from '../../assets/icons/left-arrow.svg';
 import AnswerInterviewForm from '../../components/AnswerInterviewForm';
 import Header from '../../components/Header';
+import InterviewSkeleton from '../../components/InterviewSkeleton';
+import { useInterview } from '../../hooks/useInterview.ts';
 import styled from './styled.module.scss';
 
 const InterviewPage = () => {
+    const {
+        isValidId,
+        interviewQuery,
+        isLoading,
+        currentQuestion,
+        totalQuestions,
+    } = useInterview();
+
+    if (!isValidId) {
+        return <p>Некорректный ID интервью.</p>;
+    }
+
+    if (isLoading || interviewQuery.isPending) {
+        return (
+            <>
+                <Header />
+
+                <main className={styled.main}>
+                    <div className={styled.container}>
+                        <InterviewSkeleton />
+                    </div>
+                </main>
+            </>
+        );
+    }
+
+    if (interviewQuery.isError) {
+        return <p>{interviewQuery.error.message}</p>;
+    }
+
+    if (!currentQuestion) {
+        return <p>В этой сессии нет доступного вопроса.</p>;
+    }
+
+    const interview = interviewQuery.data;
+
     return (
         <>
             <Header />
@@ -22,12 +60,19 @@ const InterviewPage = () => {
                     <div className={styled.info}>
                         <h1 className={styled.title}>Техническое интервью</h1>
                         <div className={styled.meta}>
-                            <span className={styled.topic}>JavaScript</span>
-                            <span className={styled.level}>Middle</span>
+                            <span className={styled.topic}>
+                                {interview.topic}
+                            </span>
+                            <span className={styled.level}>
+                                {interview.level}
+                            </span>
                         </div>
                     </div>
                     <div className={styled.completeInfo}>
-                        <p>Вопрос 2 из 5</p>
+                        <p>
+                            Вопрос {currentQuestion.position} из{' '}
+                            {totalQuestions}
+                        </p>
                         <progress
                             className={styled.progress}
                             value={1}
@@ -35,11 +80,11 @@ const InterviewPage = () => {
                         />
                     </div>
                     <div className={styled.question}>
-                        <span className={styled.questionNumber}>Вопрос 2</span>
+                        <span className={styled.questionNumber}>
+                            Вопрос {currentQuestion.position}
+                        </span>
                         <h2 className={styled.questionText}>
-                            Чем отличаются let, const и var? Объясни область
-                            видимости, поднятие и ограничения при повторном
-                            объявлении.
+                            {currentQuestion.question.text}
                         </h2>
                         <AnswerInterviewForm />
                     </div>

@@ -1,0 +1,67 @@
+@use '../../styles/mixins' as mixins;
+
+.card {
+    @include mixins.container;
+    @include mixins.card;
+}
+
+.title {
+    margin: 0 0 var(--space-6);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-heading);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.placeholder {
+    border-radius: var(--radius-control);
+    background: var(--color-border);
+    animation: pulse 1.4s ease-in-out infinite;
+}
+
+.short {
+    width: 32%;
+    height: var(--space-3);
+}
+
+.long {
+    width: 75%;
+    height: var(--space-4);
+}
+
+.medium {
+    width: 50%;
+    height: var(--space-3);
+}
+
+.answer {
+    height: 150px;
+    margin-top: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-field);
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@include mixins.reduced-motion {
+    .placeholder,
+    .fill {
+        animation: none;
+    }
+}

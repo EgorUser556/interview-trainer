@@ -11,8 +11,6 @@ export const createInterview = async (
         questionCount: settings.quantity,
     };
 
-    console.log(payload);
-
     const response = await request('/interview', {
         method: 'POST',
         headers: {
