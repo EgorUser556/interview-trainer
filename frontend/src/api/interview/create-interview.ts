@@ -1,12 +1,17 @@
-import type { InterviewSettings } from '../components/CreateInterviewForm/types';
-import { request } from './request';
+import type { InterviewSettings } from '../../components/CreateInterviewForm/types.ts';
+import { request } from '../request.ts';
+import type { CreateInterviewResponse } from './types';
 
-export const createInterview = async (settings: InterviewSettings) => {
+export const createInterview = async (
+    settings: InterviewSettings,
+): Promise<CreateInterviewResponse> => {
     const payload = {
         topic: settings.topic,
         level: settings.level,
         questionCount: settings.quantity,
     };
+
+    console.log(payload);
 
     const response = await request('/interview', {
         method: 'POST',

@@ -1,6 +1,6 @@
 import { type ChangeEvent, type SyntheticEvent, useState } from 'react';
 
-import { createInterview } from '../api/interview';
+import { createInterview } from '../api/interview/create-interview.ts';
 import {
     LEVEL,
     QUANTITY,
