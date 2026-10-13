@@ -4,6 +4,7 @@ import leftArrow from '../../assets/icons/left-arrow.svg';
 import AnswerInterviewForm from '../../components/AnswerInterviewForm';
 import Error from '../../components/Error';
 import Header from '../../components/Header';
+import InterviewNotFound from '../../components/InterviewNotFound';
 import InterviewSkeleton from '../../components/Skeleton';
 import { useInterview } from '../../hooks/useInterview.ts';
 import styled from './styled.module.scss';
@@ -18,7 +19,17 @@ const InterviewPage = () => {
     } = useInterview();
 
     if (!isValidId) {
-        return <p>Некорректный ID интервью.</p>;
+        return (
+            <>
+                <Header />
+
+                <main className={styled.main}>
+                    <div className={styled.container}>
+                        <InterviewNotFound />
+                    </div>
+                </main>
+            </>
+        );
     }
 
     if (isLoading || interviewQuery.isPending) {

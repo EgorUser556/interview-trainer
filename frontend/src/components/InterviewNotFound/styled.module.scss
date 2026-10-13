@@ -1,0 +1,66 @@
+@use '../../styles/mixins' as mixins;
+
+.card {
+    @include mixins.card;
+
+    width: 100%;
+    max-width: 500px;
+    margin-inline: auto;
+}
+
+.title {
+    margin: 0 0 var(--space-8);
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-heading);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+}
+
+.icon {
+    width: 56px;
+    height: 56px;
+    color: var(--color-text-muted);
+}
+
+.description {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    text-align: center;
+}
+
+.link {
+    @include mixins.focus-ring;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--control-min-height);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-control);
+    color: var(--color-accent);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+
+    &:hover {
+        color: var(--color-accent-hover);
+    }
+
+    &:active {
+        color: var(--color-accent-active);
+    }
+
+    @include mixins.reduced-motion {
+        transition: none;
+    }
+}
