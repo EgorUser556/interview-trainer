@@ -1,0 +1,245 @@
+@use '../../styles/mixins' as mixins;
+
+.main {
+    padding-bottom: var(--space-10);
+}
+
+.container {
+    @include mixins.container;
+
+    margin-top: var(--space-8);
+
+    @include mixins.mobile {
+        margin-top: var(--space-6);
+    }
+}
+
+.mainButton {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+
+    @include mixins.focus-ring;
+
+    &:hover {
+        color: var(--color-text);
+    }
+}
+
+.leftArrow {
+    width: var(--space-4);
+    height: var(--space-4);
+    flex-shrink: 0;
+}
+
+.info {
+    margin-top: var(--space-4);
+}
+
+.title {
+    margin: 0;
+    color: var(--color-text);
+    font-size: var(--font-size-xxl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+
+    @include mixins.mobile {
+        font-size: var(--font-size-xl);
+    }
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+}
+
+.topic,
+.level {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-meta);
+    background-color: var(--color-field);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-base);
+}
+
+.completeInfo {
+    margin-top: var(--space-6);
+
+    p {
+        margin: 0;
+        color: var(--color-text-muted);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+    }
+}
+
+.progress {
+    display: block;
+    appearance: none;
+    width: 100%;
+    height: var(--space-2);
+    margin-top: var(--space-2);
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--radius-meta);
+    background-color: var(--color-field);
+
+    &::-webkit-progress-bar {
+        border-radius: var(--radius-meta);
+        background-color: var(--color-field);
+    }
+
+    &::-webkit-progress-value {
+        border-radius: var(--radius-meta);
+        background-color: var(--color-accent);
+    }
+
+    &::-moz-progress-bar {
+        border-radius: var(--radius-meta);
+        background-color: var(--color-accent);
+    }
+}
+
+.question {
+    @include mixins.card;
+
+    min-width: 0;
+    margin-top: var(--space-6);
+}
+
+.questionNumber {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-control);
+    background-color: var(--color-field);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-base);
+}
+
+.questionText {
+    margin: var(--space-3) 0 0;
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-heading);
+    overflow-wrap: anywhere;
+
+    @include mixins.mobile {
+        font-size: var(--font-size-md);
+        line-height: var(--line-height-base);
+    }
+}
+
+.answerForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-6);
+}
+
+.answerLabel {
+    margin-bottom: var(--space-2);
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+}
+
+.answerInput {
+    display: block;
+    width: 100%;
+    min-height: 220px;
+    padding: var(--space-3) var(--space-4);
+    resize: vertical;
+    overflow: auto;
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-control);
+    background-color: var(--color-field);
+    color: var(--color-text);
+    font: inherit;
+    line-height: var(--line-height-base);
+    transition:
+        border-color var(--transition-fast),
+        background-color var(--transition-fast);
+
+    @include mixins.focus-ring($offset: 2px);
+
+    &::placeholder {
+        color: var(--color-text-muted);
+        opacity: 1;
+    }
+
+    &:hover:not(:disabled) {
+        border-color: var(--color-accent);
+    }
+
+    &:focus {
+        border-color: var(--color-accent);
+    }
+
+    &:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+    }
+
+    @include mixins.mobile {
+        min-height: 180px;
+        padding: var(--space-3);
+        font-size: 16px;
+    }
+}
+
+.hint {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-base);
+}
+
+.hintIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+}
+
+.sendButton {
+    @include mixins.classicButton;
+
+    width: 100%;
+    margin-top: var(--space-6);
+}
+
+@include mixins.reduced-motion {
+    .mainButton,
+    .answerInput,
+    .sendButton {
+        transition: none;
+    }
+}

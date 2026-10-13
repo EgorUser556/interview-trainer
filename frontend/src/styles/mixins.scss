@@ -38,3 +38,31 @@
         padding-inline: var(--space-4);
     }
 }
+
+@mixin classicButton {
+    min-height: var(--control-min-height);
+    margin-top: var(--space-5);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid transparent;
+    border-radius: var(--radius-control);
+    background: var(--color-accent);
+    color: var(--color-white);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+
+    @include focus-ring;
+
+    &:hover:not(:disabled) {
+        background: var(--color-accent-hover);
+    }
+
+    &:active:not(:disabled) {
+        background: var(--color-accent-active);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+    }
+}

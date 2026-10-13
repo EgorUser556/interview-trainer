@@ -10,11 +10,11 @@ export const ROUTES: AppRoute[] = [
         element: <HomePage />,
     },
     {
-        path: '/interviews/:interviewId',
+        path: '/interview/:interviewId',
         element: <InterviewPage />,
     },
     {
-        path: '/interviews/:interviewId/result',
+        path: '/interview/:interviewId/result',
         element: <InterviewResultPage />,
     },
     {
