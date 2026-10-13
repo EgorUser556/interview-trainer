@@ -1,3 +1,4 @@
+import info from '../../assets/icons/info.svg';
 import styled from './styled.module.scss';
 
 const AnswerInterviewForm = () => {
@@ -13,10 +14,7 @@ const AnswerInterviewForm = () => {
                 className={styled.answerInput}
             />
             <p className={styled.hint} id="interview-answer-hint">
-                <span className={styled.hintIcon} aria-hidden="true">
-                    i
-                </span>
-
+                <img src={info} alt="info" className={styled.hintIcon} />
                 <span>
                     Сначала ответь самостоятельно — затем сравни с объяснением
                 </span>
