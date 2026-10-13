@@ -1,0 +1,42 @@
+@use '../../styles/mixins' as mixins;
+
+.card {
+    @include mixins.card;
+
+    width: 100%;
+    max-width: 500px;
+    margin-inline: auto;
+}
+
+.title {
+    margin: 0 0 var(--space-8);
+    color: var(--color-text);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-heading);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+}
+
+.icon {
+    width: 56px;
+    height: 56px;
+}
+
+.description {
+    max-width: 340px;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    text-align: center;
+}
+
+.button {
+    @include mixins.classicButton;
+}

@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 
 import leftArrow from '../../assets/icons/left-arrow.svg';
 import AnswerInterviewForm from '../../components/AnswerInterviewForm';
+import Error from '../../components/Error';
 import Header from '../../components/Header';
-import InterviewSkeleton from '../../components/InterviewSkeleton';
+import InterviewSkeleton from '../../components/Skeleton';
 import { useInterview } from '../../hooks/useInterview.ts';
 import styled from './styled.module.scss';
 
@@ -35,7 +36,22 @@ const InterviewPage = () => {
     }
 
     if (interviewQuery.isError) {
-        return <p>{interviewQuery.error.message}</p>;
+        return (
+            <>
+                <Header />
+
+                <main className={styled.main}>
+                    <div className={styled.container}>
+                        <Error
+                            onRetry={() => {
+                                void interviewQuery.refetch();
+                            }}
+                            isRetrying={interviewQuery.isFetching}
+                        />
+                    </div>
+                </main>
+            </>
+        );
     }
 
     if (!currentQuestion) {

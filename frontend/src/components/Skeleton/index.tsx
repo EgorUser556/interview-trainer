@@ -2,11 +2,7 @@ import styled from './styled.module.scss';
 
 const InterviewSkeleton = () => {
     return (
-        <div
-            className={styled.card}
-            role="status"
-            aria-label="Загружаем интервью"
-        >
+        <div className={styled.card}>
             <p className={styled.title}>Загрузка...</p>
 
             <div className={styled.content} aria-hidden="true">
