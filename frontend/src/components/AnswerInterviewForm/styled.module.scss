@@ -57,6 +57,17 @@
     }
 }
 
+.answerInputError {
+    border-color: var(--color-error-border);
+
+    @include mixins.focus-ring($color: var(--color-error), $offset: 2px);
+
+    &:hover:not(:disabled),
+    &:focus {
+        border-color: var(--color-error);
+    }
+}
+
 .hint {
     display: flex;
     align-items: flex-start;
@@ -68,13 +79,27 @@
 }
 
 .hintIcon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    flex-shrink: 0;
     width: var(--space-4);
     height: var(--space-4);
     margin-top: 2px;
-    font-weight: var(--font-weight-semibold);
+}
+
+.error {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin: var(--space-4) 0 0;
+    color: var(--color-error);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-base);
+}
+
+.errorIcon {
+    flex-shrink: 0;
+    width: var(--space-6);
+    height: var(--space-6);
 }
 
 .sendButton {
@@ -85,8 +110,8 @@
 }
 
 @include mixins.reduced-motion {
-    .mainButton,
-    .answerInput {
+    .answerInput,
+    .sendButton {
         transition: none;
     }
 }

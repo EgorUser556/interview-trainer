@@ -16,13 +16,14 @@ const InterviewPage = () => {
         isLoading,
         currentQuestion,
         totalQuestions,
+        handleSendAnswer,
+        isSavingAnswer,
+        saveAnswerError,
     } = useInterview();
-
     if (!isValidId) {
         return (
             <>
                 <Header />
-
                 <main className={styled.main}>
                     <div className={styled.container}>
                         <InterviewNotFound />
@@ -36,7 +37,6 @@ const InterviewPage = () => {
         return (
             <>
                 <Header />
-
                 <main className={styled.main}>
                     <div className={styled.container}>
                         <InterviewSkeleton />
@@ -50,7 +50,6 @@ const InterviewPage = () => {
         return (
             <>
                 <Header />
-
                 <main className={styled.main}>
                     <div className={styled.container}>
                         <Error
@@ -113,7 +112,11 @@ const InterviewPage = () => {
                         <h2 className={styled.questionText}>
                             {currentQuestion.question.text}
                         </h2>
-                        <AnswerInterviewForm />
+                        <AnswerInterviewForm
+                            onSendAnswer={handleSendAnswer}
+                            isSaving={isSavingAnswer}
+                            errorMessage={saveAnswerError}
+                        />
                     </div>
                 </div>
             </main>
