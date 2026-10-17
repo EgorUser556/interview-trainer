@@ -1,0 +1,87 @@
+@use '../../styles/mixins' as mixins;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+}
+
+.title {
+    margin: 0 0 var(--space-3);
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-heading);
+}
+
+.mark {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+
+    @include mixins.mobile {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+    }
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 0;
+    min-height: var(--control-min-height);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid transparent;
+    border-radius: var(--radius-control);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-base);
+    cursor: pointer;
+    transition:
+        border-color var(--transition-fast),
+        background-color var(--transition-fast),
+        color var(--transition-fast);
+
+    &:hover {
+        border-color: var(--color-border-hover);
+        background: var(--color-field);
+        color: var(--color-text);
+    }
+}
+
+.optionSelected {
+    border-color: var(--color-accent);
+    background: var(--color-field);
+    color: var(--color-text);
+
+    &:hover {
+        border-color: var(--color-accent-hover);
+    }
+}
+
+.radio {
+    @include mixins.focus-ring($offset: 2px);
+
+    flex-shrink: 0;
+    width: var(--space-4);
+    height: var(--space-4);
+    margin: 0;
+    accent-color: var(--color-accent);
+    cursor: pointer;
+}
+
+.saveMark {
+    @include mixins.classicButton;
+
+    width: 100%;
+    margin-top: var(--space-4);
+}
+
+@include mixins.reduced-motion {
+    .option,
+    .saveMark {
+        transition: none;
+    }
+}

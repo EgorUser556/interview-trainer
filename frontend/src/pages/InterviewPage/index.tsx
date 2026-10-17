@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 
 import leftArrow from '../../assets/icons/left-arrow.svg';
 import AnswerInterviewForm from '../../components/AnswerInterviewForm';
+import AnswerReview from '../../components/AnswerReview';
 import Error from '../../components/Error';
 import Header from '../../components/Header';
 import InterviewNotFound from '../../components/InterviewNotFound';
+import SelfRatingForm from '../../components/SelfRatingForm';
 import InterviewSkeleton from '../../components/Skeleton';
 import { useInterview } from '../../hooks/useInterview.ts';
 import styled from './styled.module.scss';
@@ -68,6 +70,8 @@ const InterviewPage = () => {
         return <p>В этой сессии нет доступного вопроса.</p>;
     }
 
+    console.log(currentQuestion);
+
     const interview = interviewQuery.data;
 
     return (
@@ -112,11 +116,24 @@ const InterviewPage = () => {
                         <h2 className={styled.questionText}>
                             {currentQuestion.question.text}
                         </h2>
-                        <AnswerInterviewForm
-                            onSendAnswer={handleSendAnswer}
-                            isSaving={isSavingAnswer}
-                            errorMessage={saveAnswerError}
-                        />
+                        {currentQuestion.answer === null ? (
+                            <AnswerInterviewForm
+                                onSendAnswer={handleSendAnswer}
+                                isSaving={isSavingAnswer}
+                                errorMessage={saveAnswerError}
+                            />
+                        ) : (
+                            <AnswerReview
+                                answer={currentQuestion.answer}
+                                explanation={
+                                    currentQuestion.question.explanation
+                                }
+                            />
+                        )}
+                        {currentQuestion.answer !== null &&
+                            currentQuestion.selfRating === null && (
+                                <SelfRatingForm />
+                            )}
                     </div>
                 </div>
             </main>
