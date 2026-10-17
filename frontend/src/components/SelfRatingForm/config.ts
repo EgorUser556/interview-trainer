@@ -1,5 +1,5 @@
 export const options = [
-    { value: 'needRefresh', label: 'Нужно повторить' },
-    { value: 'partial', label: 'Ответил частично' },
-    { value: 'full', label: 'Ответил полностью' },
+    { value: 'Incorrect', label: 'Нужно повторить' },
+    { value: 'Partial', label: 'Ответил частично' },
+    { value: 'Correct', label: 'Ответил полностью' },
 ];

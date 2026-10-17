@@ -21,7 +21,9 @@ const InterviewPage = () => {
         handleSendAnswer,
         isSavingAnswer,
         saveAnswerError,
+        handleSendRating,
     } = useInterview();
+
     if (!isValidId) {
         return (
             <>
@@ -70,8 +72,6 @@ const InterviewPage = () => {
         return <p>В этой сессии нет доступного вопроса.</p>;
     }
 
-    console.log(currentQuestion);
-
     const interview = interviewQuery.data;
 
     return (
@@ -105,7 +105,7 @@ const InterviewPage = () => {
                         </p>
                         <progress
                             className={styled.progress}
-                            value={1}
+                            value={currentQuestion.position}
                             max={5}
                         />
                     </div>
@@ -132,7 +132,9 @@ const InterviewPage = () => {
                         )}
                         {currentQuestion.answer !== null &&
                             currentQuestion.selfRating === null && (
-                                <SelfRatingForm />
+                                <SelfRatingForm
+                                    OnSendRating={handleSendRating}
+                                />
                             )}
                     </div>
                 </div>

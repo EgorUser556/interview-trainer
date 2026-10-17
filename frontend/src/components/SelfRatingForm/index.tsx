@@ -1,13 +1,21 @@
-import { useState } from 'react';
+import { type SyntheticEvent, useState } from 'react';
 
 import { options } from './config';
 import styled from './styled.module.scss';
+import type { SelfRatingFormProps } from './types';
 
-const SelfRatingForm = () => {
+const SelfRatingForm = ({ OnSendRating }: SelfRatingFormProps) => {
     const [mark, setMark] = useState<string | null>(null);
 
+    const handleAnswerSend = (e: SyntheticEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (typeof mark !== 'string' || !mark.trim()) return;
+
+        OnSendRating(mark);
+    };
     return (
-        <form className={styled.form}>
+        <form className={styled.form} onSubmit={handleAnswerSend}>
             <h2 className={styled.title}>Самооценка</h2>
 
             <div className={styled.mark}>

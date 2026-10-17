@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { getInterview } from '../api/interview/get-interview';
+import { useRateAnswer } from './useRateAnswer.ts';
 import { useSaveAnswer } from './useSaveAnswer';
 
 export const useInterview = () => {
@@ -59,6 +60,25 @@ export const useInterview = () => {
         });
     };
 
+    const rateAnswerMutation = useRateAnswer(id);
+
+    const handleSendRating = (selfRating: string) => {
+        if (
+            !isValidId ||
+            !currentQuestion ||
+            rateAnswerMutation.isPending ||
+            currentQuestion.answer === null ||
+            currentQuestion.selfRating !== null
+        ) {
+            return;
+        }
+
+        rateAnswerMutation.mutate({
+            interviewQuestionId: currentQuestion.id,
+            rating: selfRating,
+        });
+    };
+
     const isLoading = interviewQuery.isPending || readyInterviewId !== id;
 
     return {
@@ -70,5 +90,8 @@ export const useInterview = () => {
         handleSendAnswer,
         isSavingAnswer: saveAnswerMutation.isPending,
         saveAnswerError: saveAnswerMutation.error?.message ?? null,
+        handleSendRating,
+        isSavingRating: rateAnswerMutation.isPending,
+        saveRatingError: rateAnswerMutation.error?.message ?? null,
     };
 };
