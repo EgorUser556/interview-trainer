@@ -7,7 +7,7 @@ import { useRateAnswer } from './useRateAnswer.ts';
 import { useSaveAnswer } from './useSaveAnswer';
 
 export const useInterview = () => {
-    const [currentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [readyInterviewId, setReadyInterviewId] = useState<number | null>(
         null,
     );
@@ -38,8 +38,8 @@ export const useInterview = () => {
     const questions = [...(interviewQuery.data?.questions ?? [])].sort(
         (a, b) => a.position - b.position,
     );
-
     const currentQuestion = questions[currentIndex];
+    const isLastQuestion = questions.length - 1 === currentIndex;
 
     const saveAnswerMutation = useSaveAnswer(id);
 
@@ -73,10 +73,19 @@ export const useInterview = () => {
             return;
         }
 
-        rateAnswerMutation.mutate({
-            interviewQuestionId: currentQuestion.id,
-            rating: selfRating,
-        });
+        rateAnswerMutation.mutate(
+            {
+                interviewQuestionId: currentQuestion.id,
+                rating: selfRating,
+            },
+            {
+                onSuccess: () => {
+                    if (!isLastQuestion) {
+                        setCurrentIndex((prev) => prev + 1);
+                    }
+                },
+            },
+        );
     };
 
     const isLoading = interviewQuery.isPending || readyInterviewId !== id;
@@ -93,5 +102,6 @@ export const useInterview = () => {
         handleSendRating,
         isSavingRating: rateAnswerMutation.isPending,
         saveRatingError: rateAnswerMutation.error?.message ?? null,
+        isLastQuestion,
     };
 };

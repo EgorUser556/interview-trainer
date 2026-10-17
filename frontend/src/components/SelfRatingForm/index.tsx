@@ -4,7 +4,10 @@ import { options } from './config';
 import styled from './styled.module.scss';
 import type { SelfRatingFormProps } from './types';
 
-const SelfRatingForm = ({ OnSendRating }: SelfRatingFormProps) => {
+const SelfRatingForm = ({
+    OnSendRating,
+    isLastQuestion,
+}: SelfRatingFormProps) => {
     const [mark, setMark] = useState<string | null>(null);
 
     const handleAnswerSend = (e: SyntheticEvent<HTMLFormElement>) => {
@@ -48,7 +51,7 @@ const SelfRatingForm = ({ OnSendRating }: SelfRatingFormProps) => {
                 className={styled.saveMark}
                 disabled={mark === null}
             >
-                Следующий вопрос
+                {isLastQuestion ? 'Завершить' : 'Следующий вопрос'}
             </button>
         </form>
     );

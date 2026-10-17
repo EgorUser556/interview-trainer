@@ -22,6 +22,7 @@ const InterviewPage = () => {
         isSavingAnswer,
         saveAnswerError,
         handleSendRating,
+        isLastQuestion,
     } = useInterview();
 
     if (!isValidId) {
@@ -71,6 +72,8 @@ const InterviewPage = () => {
     if (!currentQuestion) {
         return <p>В этой сессии нет доступного вопроса.</p>;
     }
+
+    console.log(currentQuestion);
 
     const interview = interviewQuery.data;
 
@@ -134,6 +137,7 @@ const InterviewPage = () => {
                             currentQuestion.selfRating === null && (
                                 <SelfRatingForm
                                     OnSendRating={handleSendRating}
+                                    isLastQuestion={isLastQuestion}
                                 />
                             )}
                     </div>
